@@ -1,0 +1,20 @@
+{% extends 'films/_base.html' %}
+
+{% block title %}Film API: film{% endblock title %}
+
+{% block content %}
+    <h1>Films page</h1>
+
+    <br></b><h3>Films list:</h3>
+    {% for film in films %}
+        <p><a href="{% url 'films:film' film.pk %}">{{ film }}</a></p>
+    {% endfor %}
+
+    <br><h3>New film:</h3>
+    <form action="{% url 'films:films' %}" method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+{% endblock content %}

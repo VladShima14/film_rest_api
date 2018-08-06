@@ -1,0 +1,39 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock title %}</title>
+    <link rel="stylesheet" href="{% static 'custom.css' %}" />
+
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-static-top">
+      <div class="container">
+
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+              <li><a href="{% url 'films:index' %}">Home</a></li>
+              <li><a href="{% url 'films:films' %}">Films</a></li>
+              <li><a href="{% url 'films:genres' %}">Genres</a></li>
+              <li><a href="{% url 'rest_api:api-root' %}">REST API</a></li>
+              <li><a href="{% url 'get_api:index' %}">Get from api</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
+                {% block content %}{% endblock content %}
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+    </div>
+
+</body>
+</html>

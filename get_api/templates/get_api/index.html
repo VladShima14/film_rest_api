@@ -1,0 +1,44 @@
+{% extends 'films/_base.html' %}
+
+{% block title %}Get from local API{% endblock title %}
+
+{% block content %}
+    <h1>Get data from local API</h1>
+
+    <form action="{% url 'get_api:index' %}" method="POST">
+        {% csrf_token %}
+        <input type="submit" class="btn btn-primary" value="Connect to local API">
+    </form>
+
+    {% if connection_result %}
+        <p><p><em>{{ connection_result }}</em></p></p>
+        <p>Connection takes: {{ api_request_time }} seconds.</p>
+    {% endif %}
+
+    {% if index_result %}
+        <strong>Index:</strong>
+        <ul>
+        {% for k, v in index_result.items %}
+            <li><a href="{{ v }}">{{ k }}</a></li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+
+    {% if films_result %}
+        <strong>Films:</strong>
+        <ul>
+        {% for film in films_result %}
+            <li>{{ film.name }}</li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+
+    {% if genres_result %}
+        <strong>Genres:</strong>
+        <ul>
+        {% for genre in genres_result %}
+            <li>{{ genre.name }}</li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+{% endblock content %}

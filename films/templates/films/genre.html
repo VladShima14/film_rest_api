@@ -1,0 +1,19 @@
+{% extends 'films/_base.html' %}
+
+{% block content %}
+
+    <h1>Film genre</h1><br>
+
+    <form action="" method="POST">
+        {% csrf_token %}
+        {% for field in form %}
+            <div class="form-group">
+            {{ field.label_tag }}<br>
+            {{ field }}<br>
+            {{ field.errors }}
+            </div>
+        {% endfor %}
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+{% endblock content %}

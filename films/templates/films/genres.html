@@ -1,0 +1,19 @@
+{% extends 'films/_base.html' %}
+
+{% block title %}Django API: genres{% endblock title %}
+
+{% block content %}
+    <h1>Film genres</h1>
+
+    <br></b><h3>Genres:</h3>
+    {% for genre in genres %}
+        <p><a href="{% url 'films:genre' genre.pk %}">{{ genre }}</a></p>
+    {% endfor %}
+
+    <br><h3>New genre:</h3>
+    <form action="{% url 'films:genres' %}" method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+{% endblock content %}
